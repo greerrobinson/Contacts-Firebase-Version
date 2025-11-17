@@ -1,20 +1,35 @@
 [
   {
     "id": 1,
-    "name": "Alice Johnson",
-    "phone": "555-123-4567",
-    "email": "alice@example.com"
+    "firstName": "Alexa",
+    "lastName": "Gonzalez",
+    "company": "ABC CFO",
+    "cellPhone": "501-239-5434",
+    "workPhone": "479-232-6779",
+    "email": "alexa@example.com",
+    "address": "123 Main St, Fayetteville, AR",
+    "notes": "Met at the ABC Finance summit."
   },
   {
     "id": 2,
-    "name": "Bob Smith",
-    "phone": "555-987-6543",
-    "email": "bob@example.com"
+    "firstName": "Andrew",
+    "lastName": "Peters",
+    "company": "Acme Corp",
+    "cellPhone": "555-111-2222",
+    "workPhone": "",
+    "email": "andrew.peters@example.com",
+    "address": "",
+    "notes": ""
   },
   {
     "id": 3,
-    "name": "Charlie Davis",
-    "phone": "555-222-8899",
-    "email": "charlie@example.com"
+    "firstName": "Bartholomew",
+    "lastName": "Nickols",
+    "company": "",
+    "cellPhone": "555-333-4444",
+    "workPhone": "",
+    "email": "",
+    "address": "",
+    "notes": ""
   }
 ]
