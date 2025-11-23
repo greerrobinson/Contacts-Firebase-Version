@@ -93,7 +93,8 @@ fun ContactsScreen(viewModel: ContactsViewModel) {
                     onContactClick = { contact ->
                         selectedContactId = contact.id
                         mode = ContactsMode.DETAILS
-                    }
+                    },
+                    onLogout = viewModel::logout
                 )
             }
 
@@ -168,7 +169,8 @@ fun ContactsHomeScreen(
     isLoading: Boolean,
     onSearchChange: (String) -> Unit,
     onAddClick: () -> Unit,
-    onContactClick: (ContactItem) -> Unit
+    onContactClick: (ContactItem) -> Unit,
+    onLogout: () -> Unit
 ) {
     val grouped = remember(contacts) {
         contacts.groupBy { it.sectionLetter }.toSortedMap()
@@ -179,7 +181,7 @@ fun ContactsHomeScreen(
             .fillMaxSize()
             .padding(horizontal = 16.dp, vertical = 12.dp)
     ) {
-        // Top bar: title + add button
+        // Top bar: title + logout + add button
         Row(
             modifier = Modifier.fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically
@@ -190,6 +192,13 @@ fun ContactsHomeScreen(
                 fontWeight = FontWeight.SemiBold
             )
             Spacer(modifier = Modifier.weight(1f))
+            TextButton(onClick = onLogout) {
+                Text(
+                    text = "Logout",
+                    color = AppBlue,
+                    fontSize = 14.sp
+                )
+            }
             TextButton(onClick = onAddClick) {
                 Text(text = "+", fontSize = 24.sp)
             }
@@ -277,6 +286,15 @@ private fun ContactListCard(
             if (contact.company.isNotBlank()) {
                 Text(
                     text = contact.company,
+                    fontSize = 14.sp,
+                    color = TextGray,
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis
+                )
+            }
+            if (contact.cellPhone.isNotBlank()) {
+                Text(
+                    text = contact.cellPhone,
                     fontSize = 14.sp,
                     color = TextGray,
                     maxLines = 1,

@@ -17,7 +17,7 @@ interface ContactDao {
     suspend fun insert(contactItem: ContactItem): Long
 
     @Query("DELETE FROM contactitems_table")
-    fun deleteAll(): Int
+    suspend fun deleteAll(): Int
 
     @Query("SELECT * FROM contactitems_table WHERE id = :id")
     suspend fun getItem(id: Long): ContactItem

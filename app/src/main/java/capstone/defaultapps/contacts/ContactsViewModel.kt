@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import capstone.defaultapps.contacts.Repository.ContactItem
 import capstone.defaultapps.contacts.Repository.ContactRepository
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -14,7 +15,8 @@ data class ContactsUiState(
     val contacts: List<ContactItem> = emptyList(),
     val isLoading: Boolean = false,
     val errorMessage: String? = null,
-    val searchQuery: String = ""
+    val searchQuery: String = "",
+    val isLoggedOut: Boolean = false
 )
 
 class ContactsViewModel(private val repository: ContactRepository) : ViewModel() {
@@ -121,6 +123,23 @@ class ContactsViewModel(private val repository: ContactRepository) : ViewModel()
 
     fun clearError() {
         _uiState.value = _uiState.value.copy(errorMessage = null)
+    }
+
+    fun logout() {
+        viewModelScope.launch {
+            try {
+                // Clear local repository data
+                repository.clearUserData()
+                // Sign out from Firebase
+                FirebaseAuth.getInstance().signOut()
+                // Update UI state
+                _uiState.value = ContactsUiState(isLoggedOut = true)
+            } catch (e: Exception) {
+                _uiState.value = _uiState.value.copy(
+                    errorMessage = "Logout failed: ${e.message}"
+                )
+            }
+        }
     }
 
     private fun filterContacts(contacts: List<ContactItem>, query: String): List<ContactItem> {

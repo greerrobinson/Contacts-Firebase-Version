@@ -35,6 +35,17 @@ class ContactRepository(private val contactDao: ContactDao) {
 
     @Suppress("RedudndantSuspendModifier")
     @WorkerThread
+    suspend fun clearUserData() {
+        // Clear local Room database
+        contactDao.deleteAll()
+        // Reset flow to empty
+        contactItems = emptyFlow()
+        // Clear Firestore datasource connection
+        firestoreDatasource = ContactFirestoreDatasource(this)
+    }
+
+    @Suppress("RedudndantSuspendModifier")
+    @WorkerThread
     suspend fun insert(contactItem: ContactItem){
         val id = contactDao.insert(contactItem)
         contactItem.id = id
