@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "783252959724",
-    "project_id": "contacts-firebase-cd866",
-    "storage_bucket": "contacts-firebase-cd866.firebasestorage.app"
+    "project_number": "704445789686",
+    "project_id": "contacts-app-511a8",
+    "storage_bucket": "contacts-app-511a8.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:783252959724:android:d7125ba9684d4540e810c9",
+        "mobilesdk_app_id": "1:704445789686:android:a26915f68185ddee4103d7",
         "android_client_info": {
           "package_name": "capstone.defaultapps.contacts"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyAjEMF-W2zPqrOQb2ptljMNSkvuyMtma8s"
+          "current_key": "AIzaSyCPWWPIH8kPOzVsCJgMQTDLZyWZDh8FQH8"
         }
       ],
       "services": {
